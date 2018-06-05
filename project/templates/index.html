@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+<header class="bg-dark text-white"> 
+      <div class="container text-center">
+        <h1>Welcome to Material 2 Group 7</h1>
+        <p>Our group aims to facilitate a circular economy where there is complete recyclability and minimal waste is generated.
+      </div>
+    </header>
+
+    <section class="bg-light">
+          <div class="container text-center">
+            <h2>Design Brief</h2>
+            <p class="lead">Electronic waste is a growing problem, with 43 million tons generated in 2016. With the number of mobile phones worldwide in 2017 being 4.77 billion (Statista,2017), a significant percentage of electronic waste is related to mobile phone disposal (Knapton, 2017) . This is indicative of a linear economy where waste is generated without recycle. Our group aims to facilitate a circular economy where there is complete recyclability and minimal waste is generated. Some obstacles would be the high cost of recycling electronic devices as compared to creating a new electronic device and the lack of electronic device components recycling options.</p>
+          </div>
+    </section>
+
+    <section>
+      <div>
+        <div id='graph'style="height: 500px"> 
+        </div>
+    </div>
+    </section>
+
+    <section id="solution" class="bg-light">
+      <div class="text-center">
+            <h2>Our Solution</h2>
+            <img src="{% static "images/flowchart.png" %}" alt="flowchart" width = '100%' height = '800px'>
+      </div>
+    </section>
+
+<script type="text/javascript">
+var dom = document.getElementById("graph");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+app.title = 'e-waste generation - bar chart';
+
+option = {
+    title: {
+        text: 'the amount of e-waste generated in 2016(from Statista)',
+        subtext: 'Total E-Waste generated(million metric tons)'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2016']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['Italy','Indonesia','France','Russia','Brazil','Germany','India','Japan','United States','china']
+    },
+    series: [
+        {
+            name: '2016',
+            type: 'bar',
+            data: [1.2,1.3,1.4,1.4,1.5, 1.9, 2.0, 2.1, 6.3, 7.2]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+{% endblock %}
