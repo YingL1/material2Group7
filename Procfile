@@ -1,0 +1,1 @@
+web: gunicorn material2Group7.wsgi --log-file -
