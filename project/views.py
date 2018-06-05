@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, DeviceForm
-from .models import DeviceModel, Device,Component
+from .models import DeviceModel, Device,Component, Solution
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -37,10 +37,8 @@ def profile(request):
 		tokens = len(component_working)
 		for pk in component_not_working:
 			componenet_object = Component.objects.get(pk=pk)
-			if componenet_object.name == 'screen':
-				solutions.append('replace a scress')
-			if componenet_object.name == 'Battery':
-				solutions.append('replace a Battery')
+			solution_object = Solution.objects.get(component=componenet_object)
+			solutions.append(str(solution_object.solution)) 
 		return render(request, 'profile.html', context={'form': form, 'form_sumbit':form_sumbit,'tokens':tokens,'solutions':solutions})
 	else:
 		form = DeviceForm()

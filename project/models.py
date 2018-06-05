@@ -12,23 +12,23 @@ class User(AbstractUser):
 
 class Component(models.Model):
     name = models.CharField(max_length=100)
-    def __unicode__(self):
+    def __str__(self):
        return self.name
 
 class DeviceModel(models.Model):
     name = models.CharField(max_length=100)
-    def __unicode__(self):
+    def __str__(self):
        return self.name
 
 class Device(models.Model):
     device_model = models.ForeignKey(DeviceModel)
     component_working = models.ManyToManyField('Component', related_name='work+')
     component_not_working = models.ManyToManyField('Component', related_name='notwork+')
-    def __unicode__(self):
+    def __str__(self):
        return self.device_model
 
 class Solution(models.Model):
     component = models.ForeignKey(Component)
-    solution = models.CharField(max_length=200,blank=True)
-    def __unicode__(self):
-       return self.component
+    solution = models.TextField(blank=True)
+    def __str__(self):
+      return self.solution

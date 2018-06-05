@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 		<section>
+            <div class="container">
 			<h3>add a new device into the blockchain: </h3>
                 <form class="form" action="{% url 'profile' %}" method="post">
                     {% csrf_token %}
@@ -9,9 +10,15 @@
                         {{ field.label_tag }}
                         {{ field }}
                         {{ field.errors }}
+                    </br>
                     {% endfor %}
+                    <p>possible solution:</p><input type="text" list="languages"><br/>
                     <button type="submit">submit</button>
                 </form>
+                <datalist id="languages">
+                    <option value="replace screen">
+                    <option value="replace battery">
+                </datalist>
                 {% if form_sumbit %}
                 		<h3> Solution:</h3>
                 			{% for so in solutions %}
@@ -20,5 +27,6 @@
                 	<h3>number of tokens to the customer: {{ tokens }} </h3>
 
                 {% endif %}
-
+            </div>
+        </section>
 {% endblock %}
