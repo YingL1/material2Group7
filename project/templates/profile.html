@@ -16,8 +16,9 @@
                     <button type="submit">submit</button>
                 </form>
                 <datalist id="languages">
-                    <option value="replace screen">
-                    <option value="replace battery">
+                    {% for sol in solution_datalist %}
+                               <option value="{{ sol }}">
+                    {% endfor %}
                 </datalist>
                 {% if form_sumbit %}
                 		<h3> Solution:</h3>

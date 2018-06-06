@@ -23,8 +23,10 @@ def index(request):
 
 
 def profile(request):
-	user = request.user
 	form_sumbit = False
+	solution_datalist = []
+	for sol in Solution.objects.all():
+		solution_datalist.append(str(sol.solution))
 	if request.method == 'POST':
 		form = DeviceForm()
 		device_model = request.POST.get('device_model')
@@ -39,7 +41,7 @@ def profile(request):
 			componenet_object = Component.objects.get(pk=pk)
 			solution_object = Solution.objects.get(component=componenet_object)
 			solutions.append(str(solution_object.solution)) 
-		return render(request, 'profile.html', context={'form': form, 'form_sumbit':form_sumbit,'tokens':tokens,'solutions':solutions})
+		return render(request, 'profile.html', context={'form': form, 'form_sumbit':form_sumbit,'tokens':tokens,'solutions':solutions,'solution_datalist':solution_datalist})
 	else:
 		form = DeviceForm()
-	return render(request, 'profile.html', context={'form': form,'form_sumbit':form_sumbit})
+	return render(request, 'profile.html', context={'form': form,'form_sumbit':form_sumbit,'solution_datalist':solution_datalist})
